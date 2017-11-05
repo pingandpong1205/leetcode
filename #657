@@ -1,0 +1,53 @@
+/*
+leetcode #657.Judge Route Circle
+Initially, there is a Robot at position (0, 0). Given a sequence of its moves, judge if this robot makes a circle, which means it moves back to the original place.
+
+The move sequence is represented by a string. And each move is represent by a character. The valid robot moves are R (Right), L (Left), U (Up) and D (down). The output should be true or false representing whether the robot makes a circle.
+
+Example 1:
+Input: "UD"
+Output: true
+Example 2:
+Input: "LL"
+Output: false
+*/
+
+#include<stdio.h>
+
+int judgeCircle(char* moves);
+
+int main(void){
+	//LR相反
+	//UD相反
+	char moves[]="UDLRLR";
+	printf("%d",judgeCircle(moves));
+}
+
+int judgeCircle(char* moves) {
+	int i=0;
+	int l=0;
+	int u=0;
+	char c;
+	while(1){
+		c = moves[i];
+		if(c!='\0'){
+			if(c=='L'){
+				l++;
+			}else if(c=='R'){
+				l--;
+			}else if(c=='U'){
+				u++;
+			}else if(c=='D'){
+				u--;
+			}
+			i++;
+		}else{
+			break;
+		}
+	}
+	if(l==0&&u==0){
+		return 1;
+	}else{
+		return 0;
+	}
+}
